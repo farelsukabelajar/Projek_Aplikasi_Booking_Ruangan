@@ -1,114 +1,78 @@
 import java.util.Scanner;
 
-public class AplikasiBookingRuangan {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+public class AplikasiBookingBeta {
 
-        // input login
+    static boolean menu = true;
+    static Scanner sc = new Scanner(System.in);
+
+    /*
+     * function tampilan menu
+     */
+    static void tampilkanMenu() {
         System.out.println("==================================================");
-        System.out.println("=            Aplikasi Booking Ruangan            =");
+        System.out.println("=                      Menu                      =");
         System.out.println("==================================================\n");
-        System.out.println("[1] Daftar Akun");
-        System.out.println("[2] Login Akun");
-        System.out.println("[3] Form Booking");
-        System.out.println("[4] List Booking");
-        System.out.println("[5] Reservasi Ruangan Rapat");
-        System.out.println("[6] Payment Methode");
-        System.out.println("[7] Checkin");
-        System.out.println("[8] Checkout");
-        System.out.println("[9] Beri Penilaian");
+        System.out.println("[1] Login Akun");
+        System.out.println("[2] Form Booking");
+        System.out.println("[3] List Booking");
+        System.out.println("[4] Reservasi Ruangan Rapat");
+        System.out.println("[5] Payment Methode");
+        System.out.println("[6] Checkin");
+        System.out.println("[7] Checkout");
+        System.out.println("[8] Beri Penilaian");
         System.out.println("[0] Keluar");
         System.out.print("Pilih menu: ");
+        int pilihanMenu = sc.nextInt();
+        sc.nextLine();
 
-        System.out.println("\n==================================================");
-        System.out.println("=                  Daftar Akun                   =");
-        System.out.println("==================================================\n");
-
-        System.out.println("Selamat datang di aplikasi booking ruangan! Silahkan buat akun anda");
-
-        // input nama
-        System.out.print("Nama lengkap: ");
-        String namaDaftar = sc.next();
-
-        // input username
-        String usernameDaftar;
-        Boolean isUsernameDaftar = false;
-
-        while (!isUsernameDaftar) {
-            System.out.print("Username: ");
-            usernameDaftar = sc.next();
-            if (usernameDaftar.length() >= 8) {
-                isUsernameDaftar = true;
-
-            } else {
-                System.out.println("Password minimal harus 8 huruf atau angka!\n");
-            }
-
+        switch (pilihanMenu) {
+            case 1:
+              login();
+                break;
+            case 2:
+                formBooking();
+                break;
+            case 3:
+              listBooking();
+                break;
+            case 4:
+                    restRapat();
+                break;
+            case 5:
+             payment();
+                break;
+            case 6:
+                checkin();
+                break;
+            case 7:
+               checkout();
+                break;
+            case 8:
+                penilaian();
+                break;             
+            case 0:
+                keluar();
+                break;
+            default:
+                System.out.println("\nInput yang anda masukan salah, silahkan untuk mencoba lagi!\n");
         }
+    }
 
-        // input pasword
-        String passwordDaftar = "";
-        Boolean isDigitPassword = false;
-
-        while (!isDigitPassword) {
-
-            System.out.print("Password: ");
-            passwordDaftar = sc.next();
-            if (passwordDaftar.length() >= 8) {
-                isDigitPassword = true;
-
-            } else {
-                System.out.println("Password minimal harus 8 huruf atau angka!\n");
-            }
-
-        }
-
-        // input konfirmasi password
-        Boolean isPassword = false;
-
-        while (!isPassword) {
-
-            System.out.print("Konfirmasi password: ");
-            String confirmPasswordDaftar = sc.next();
-
-            if (confirmPasswordDaftar.equals(passwordDaftar)) {
-                isPassword = true;
-            } else {
-                System.out.println("Konfirmasi password anda tidak sesuai, silahkan coba lagi!\n");
-            }
-        }
-
-        // input ttl
-        System.out.print("Tempat, tanggal, lahir: ");
-        String ttlDaftar = sc.next();
-
-        // input e-mail
-        System.out.print("E-mail: ");
-        String emailDaftar = sc.next();
-
-        // input nomer telepon
-        System.out.print("Nomor telepon: ");
-        String noHpDaftar = sc.next();
-
-        // daftar akun berakhir
-        System.out.println("\n==================================================");
-        System.out.println("=                  System out                    =");
-        System.out.println("==================================================");
-
+    /* 
+     * function login
+     */
+    static void login() {
+        
         System.out.println("\n==================================================");
         System.out.println("=                     Login                      =");
         System.out.println("==================================================\n");
-
+ 
         String bookingUsername = "username123";
         String bookingPassword = "username123";
 
-        String adminUsername = "admin123";
-        String adminPassword = "admin123";
-
         Boolean loginBooking = false;
-        Boolean loginAdmin = false;
 
-        while (!loginBooking && !loginAdmin) {
+        while (!loginBooking) {
             System.out.println("Login Aplikasi Booking Ruangan");
             System.out.print("Masukan Username Anda : ");
             String usernameIn = sc.next();
@@ -117,9 +81,7 @@ public class AplikasiBookingRuangan {
 
             if (usernameIn.equals(bookingUsername) && passwordIn.equals(bookingPassword)) {
                 loginBooking = true;
-            } else if (usernameIn.equals(adminUsername) && passwordIn.equals(adminPassword)) {
-                loginAdmin = true;
-            } else {
+            }else {
                 System.out.println("Username atau Password yang Anda Masukan Salah!");
                 System.out.println("Silahkan Mengisi Username dan Password Anda Kembali!\n");
             }
@@ -132,20 +94,20 @@ public class AplikasiBookingRuangan {
             System.out.println("=                  System out                    =");
             System.out.println("==================================================\n");
 
-        } else if (loginAdmin) {
-            System.out.println("\nLogin Berhasil");
-            System.out.println("Selamat Datang " + adminUsername + " di Aplikasi Booking Ruangan");
-            System.out.println("\n==================================================");
-            System.out.println("=                Admin System                    =");
-            System.out.println("==================================================\n");
         }
-        // output login
+    }
 
+    /*
+     * function form booking
+     */
+    static void formBooking() {
+
+        // form booking dimulai
         System.out.println("\n==================================================");
-        System.out.println("=                Form Booking                    =");
+        System.out.println("=                 Form Booking                   =");
         System.out.println("==================================================\n");
-        System.out.println("Silahkan Isi Data Diri Anda");
 
+        // variabel loop form booking 1
         String inputNama = "";
         Boolean isNamaValid = false;
 
@@ -159,17 +121,21 @@ public class AplikasiBookingRuangan {
             }
         }
 
+        // variabell loop form booking 2
         boolean isAlamatValid = false;
         String alamat = "";
+
         while (!isAlamatValid) {
             System.out.print("Alamat: ");
             alamat = sc.next();
-            if (!alamat.trim().isEmpty()) { // memastikan alamat tidak kosong
+            if (!alamat.trim().isEmpty()) {
                 isAlamatValid = true;
             } else {
                 System.out.println("Alamat tidak boleh kosong. Silahkan masukkan lagi.");
             }
         }
+
+        // variable loop form booking 3
 
         boolean isNoHpValid = false;
         String noHp = "";
@@ -186,7 +152,10 @@ public class AplikasiBookingRuangan {
             }
         }
 
+        // variable loop konfirmasi form booking 3
+
         boolean konfirmasiBenar = false;
+
         while (!konfirmasiBenar) {
             System.out.print("Silahkan Ketik (Konfirmasi) Untuk Menyimpan Data Anda: ");
             String konfirmasi = sc.next();
@@ -198,257 +167,82 @@ public class AplikasiBookingRuangan {
             }
         }
 
-        int tahun, bulan, tanggal, waktu, jam;
-        String namaBulanFormBooking = "";
-        String ampm;
-
-        // input tahun
-        do {
-            System.out.print("Masukan Tahun Pemesanan (YYYY): ");
-            tahun = sc.nextInt();
-            if (tahun == 2023) {
-            } else {
-                System.out.println("Tahun Yang Anda Masukan Tidak Valid!\n");
-            }
-        } while (tahun != 2023);
-        // output tahun
-
-        // input bulan
-        do {
-            System.out.print("Masukan Bulan Pemesanan (1-12): ");
-            bulan = sc.nextInt();
-            namaBulanFormBooking = ""; // Reset namaBulanFormBooking di setiap iterasi
-
-            switch (bulan) {
-                case 1:
-                    namaBulanFormBooking = "Januari";
-                    break;
-                case 2:
-                    namaBulanFormBooking = "Februari";
-                    break;
-                case 3:
-                    namaBulanFormBooking = "Maret";
-                    break;
-                case 4:
-                    namaBulanFormBooking = "April";
-                    break;
-                case 5:
-                    namaBulanFormBooking = "Mei";
-                    break;
-                case 6:
-                    namaBulanFormBooking = "Juni";
-                    break;
-                case 7:
-                    namaBulanFormBooking = "Juli";
-                    break;
-                case 8:
-                    namaBulanFormBooking = "Agustus";
-                    break;
-                case 9:
-                    namaBulanFormBooking = "September";
-                    break;
-                case 10:
-                    namaBulanFormBooking = "Oktober";
-                    break;
-                case 11:
-                    namaBulanFormBooking = "November";
-                    break;
-                case 12:
-                    namaBulanFormBooking = "Desember";
-                    break;
-                default:
-                    System.out.println("Bulan yang Anda Masukan Salah!\n");
-                    break;
-            }
-        } while (bulan < 1 || bulan > 12);
-        // output bulan
-
-        // Input tanggal
-        int maxTanggal = 31;
-        if (bulan == 2) {
-            if ((tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0)) {
-                maxTanggal = 29;
-            } else {
-                maxTanggal = 28;
-            }
-        } else if (bulan == 4 || bulan == 6 || bulan == 9 || bulan == 11) {
-            maxTanggal = 30;
-        }
-        do {
-            System.out.print("Masukan Tanggal Pemesanan (1-" + maxTanggal + "): ");
-            tanggal = sc.nextInt();
-            if (tanggal < 1 || tanggal > maxTanggal) {
-                System.out.println("Tanggal yang Anda Masukan Salah untuk Bulan " + namaBulanFormBooking + "!\n");
-            }
-        } while (tanggal < 1 || tanggal > maxTanggal);
-        // output tanggal
-
-        // input waktu
-        do {
-            System.out.print("Masukan Waktu Mulai Pesanan (format 24 jam): ");
-            waktu = sc.nextInt();
-            if (waktu < 0 || waktu >= 24) {
-                System.out.println("Waktu yang Anda Masukan Salah!\n");
-            }
-        } while (waktu < 0 || waktu >= 24);
-
-        ampm = waktu < 12 ? "AM" : "PM";
-        if (waktu > 12)
-            waktu -= 12; // Konversi ke format 12 jam
-        // output waktu
-
-        // input durasi
-        do {
-            System.out.print("Masukan Durasi Pemesanan (Jam, 1-24): ");
-            jam = sc.nextInt();
-            sc.nextLine();
-
-            if (jam < 1 || jam > 24) {
-                System.out.println("Durasi yang Anda Masukan Salah!\n");
-            }
-        } while (jam < 1 || jam > 24);
-        // output durasi
-
-        // output hasil
-        System.out.println(
-                "\nAnda Telah Memulai Pemesanan Ruangan pada " + tanggal + " " + namaBulanFormBooking + " " + tahun + ""
-                        + " Pada Jam "
-                        + waktu + " " + ampm + " Dengan Durasi Pemesanan " + jam + " Jam");
+        // form booking berakhir
         System.out.println("\n==================================================");
         System.out.println("=                  System out                    =");
-        System.out.println("==================================================");
-
-        // output form booking
-
-        // input layanan
-        System.out.println("Layanan a");
-        System.out.println("Layanan b");
-        System.out.println("Layanan c");
-
-        System.out.print("Pilih Layanan yang Ingin Dipesan (a/b/c): ");
-        String layanan = sc.next();
-
-        String a = "a";
-        String b = "b";
-        String c = "c";
-
-        switch (layanan) {
-            case "a":
-                System.out.println("Jenis Layanan yang Dipilih adalah Layanan " + a);
-                break;
-            case "b":
-                System.out.println("Jenis Layanan yang Dipilih adalah Layanan " + b);
-                break;
-            case "c":
-                System.out.println("Jenis Layanan yang Dipilih adalah Layanan " + c);
-                break;
-            default:
-                System.out.println("Anda Tidak Memilih Layanan Apapun");
-                break;
-        }
-        // output layanan
-
-        // input fasilitas
-        System.out.println("\nFasilitas a");
-        System.out.println("Fasilitas b");
-        System.out.println("Fasilitas c");
-
-        System.out.print("Pilih Faasilitas yang Ingin Dipesan (a/b/c): ");
-        String fasilitas = sc.next();
-
-        String a1 = "a";
-        String b1 = "b";
-        String c1 = "c";
-
-        switch (fasilitas) {
-            case "a":
-                System.out.println("Jenis Fasilitas yang Dipilih adalah Fasilitas " + a1);
-                break;
-            case "b":
-                System.out.println("Jenis Fasilitas yang Dipilih adalah Fasilitas " + b1);
-                break;
-            case "c":
-                System.out.println("Jenis Fasilitas yang Dipilih adalah Fasilitas " + c1);
-                break;
-            default:
-                System.out.println("Anda Tidak Memilih Fasilitas Apapun");
-                break;
-        }
-        // output fasilitas
-
-        // input informasi resepsionis
-        System.out.println(
-                "\n\nData Anda Telah Tersimpan Jika Ada Kendala Saat Memesan Ruangan Silahkan Menghubungi Kontak Resepsionis yang ada Dibawah Ini");
-        String resepsionis = "6281234567890";
-        System.out.println("\nInformasi Kontak Resepsionis +" + resepsionis);
-        // output informasi resepsionis
-
-        // output form booking
-
-        System.out.println("\n==================================================");
-        System.out.println("=                 List Booking                   =");
         System.out.println("==================================================\n");
+    }
 
-        int listRuang;
-        Boolean isListRuang = false;
-        Boolean isDetailRuang = false;
+    /*
+     * function list booking
+     */
+    static void listBooking() {
 
-        while (!isListRuang) {
+        int ruang = 0;
 
-            System.out.println("List Ruangan yang Tersedia Hari Ini\n");
+        // Inisialisasi array
+        String fasilitasRuangan[][] = new String[3][3];
+        fasilitasRuangan[0][0] = "Fasilitas 1A";
+        fasilitasRuangan[0][1] = "Fasilitas 1B";
+        fasilitasRuangan[0][2] = "Fasilitas 1C";
+        fasilitasRuangan[1][0] = "Fasilitas 2A";
+        fasilitasRuangan[1][1] = "Fasilitas 2B";
+        fasilitasRuangan[1][2] = "Fasilitas 2C";
+        fasilitasRuangan[2][0] = "Fasilitas 3A";
+        fasilitasRuangan[2][1] = "Fasilitas 3B";
+        fasilitasRuangan[2][2] = "Fasilitas 3C";
+
+        boolean isListBooking = false;
+        while (!isListBooking) {
+
+            System.out.println("\n==================================================");
+            System.out.println("=                 List Booking                   =");
+            System.out.println("==================================================\n");
+
+            System.out.println("List ruangan yang tersedia pada hari ini\n");
             System.out.println("Ruangan 1 ");
             System.out.println("Ruangan 2");
             System.out.println("Ruangan 3");
-            System.out.print("Silahlkan Masukan Pilihan Ruangan (1/2/3): ");
-            listRuang = sc.nextInt();
+            System.out.print("Silahkan masukan ruangan yang ingin anda pesan (1/2/3): ");
+            ruang = sc.nextInt();
 
-            switch (listRuang) {
-                case 1:
-                case 2:
-                case 3:
-                    isListRuang = true;
-                    break;
-                default:
-                    System.out.println("Input yang anda masukan salah!\n");
-                    continue;
+            if (ruang > 3 || ruang < 1) {
+                System.out.println("\nRuang yang anda pilih tidak tersedia, silahkan untuk mencoba kembali!");
+            } else {
+                isListBooking = true;
             }
+        }
 
-            while (!isDetailRuang) {
+        System.out.println("\n==================================================");
+        System.out.println("=           Detail fasilitas ruangan             =");
+        System.out.println("==================================================\n");
+        System.out.print("Apakah Anda Ingin Melihat Detail Fasilitas Ruangan " + ruang + " (y/t)?: ");
+        String detail = sc.next();
 
-                System.out.println("\nDetail ruangan " + listRuang);
-                System.out.print("Apakah Anda Ingin Melihat Detail Ruangan " + listRuang + " (y/t)?: ");
-                String detail = sc.next();
+        if (detail.equalsIgnoreCase("y")) {
 
-                if (detail.equalsIgnoreCase("y")) {
-                    switch (listRuang) {
-                        case 1:
-                            System.out.println("Detail Ruangan 1\n");
-                            break;
-                        case 2:
-                            System.out.println("Detail Ruangan 2\n");
-                            break;
-                        case 3:
-                            System.out.println("Detail Ruangan 3\n");
-                            break;
-                        default:
-                            System.out.println("Pilihan Ruangan Tidak Valid\n");
-                            break;
-                    }
-                    isDetailRuang = true;
-                } else if (detail.equalsIgnoreCase("t")) {
-                    System.out.println("Anda tidak jadi melihat detail ruangan.\n");
-                    isDetailRuang = true;
-                } else {
-                    System.out.println("Input yang anda masukan salah, silahkan coba lagi!");
+            if (ruang >= 1 && ruang <= 3) {
+                System.out.println("\nIni Adalah Detail dari Ruangan " + ruang + ".");
+                System.out.println("\nDetail Fasilitas Ruangan " + ruang + ": ");
+                for (int i = 0; i < fasilitasRuangan[ruang - 1].length; i++) {
+                    System.out.println(fasilitasRuangan[ruang - 1][i]);
                 }
             }
+
+        } else {
+            System.out.println("\nAnda tidak melihat detail ruangan.");
         }
 
         System.out.println("\n==================================================");
         System.out.println("=                  System out                    =");
         System.out.println("==================================================\n");
 
-        // input reservasi ruangan rapat
+    }
+
+    /*
+     * function reservasi rapat
+     */
+    static void restRapat() {
 
         System.out.println("\n==================================================");
         System.out.println("=        Reservasi Ruangan Rapat                 =");
@@ -460,7 +254,7 @@ public class AplikasiBookingRuangan {
         while (!isResRapat) {
 
             System.out.print("Apakah Anda ingin Memulai Reservasi Ruangan Rapat? (y/t): ");
-            String resRapat = sc.next();
+            String resRapat = sc.nextLine();
             if (resRapat.equalsIgnoreCase("y")) {
                 System.out.println("\nSilahkan untuk memilih ruangan rapat");
 
@@ -497,6 +291,7 @@ public class AplikasiBookingRuangan {
 
                 String konfirmasiRuangRapat;
                 Boolean isKonfirmasiRuangRapat = false;
+
                 while (!isKonfirmasiRuangRapat) {
 
                     System.out.print("Apakah anda yakin dengan ruangan rapat " + ruangRapat + "? (y/t): ");
@@ -529,27 +324,36 @@ public class AplikasiBookingRuangan {
         System.out.println("\n==================================================");
         System.out.println("=                  System out                    =");
         System.out.println("==================================================\n");
+    }
+
+    /*
+     * function checkin
+     */
+    static void checkin() {
 
         // input Checkin
         System.out.println("\n==================================================");
         System.out.println("=                    Checkin                     =");
-        System.out.println("==================================================\n");
-        int tahunCheckin, bulanCheckin, tanggalCheckin, waktuCheckin;
+        System.out.println("==================================================");
+
+        int bulanCheckin, tanggalCheckin, waktuCheckin;
         String namaBulanCheckin = "";
         String ampmCheckin;
 
-        // Input tahun
-        do {
+        // Tahun checkin
+        int tahunCheckin = 0;
+        while (tahunCheckin != 2023) {
+
             System.out.print("Masukan Tahun Checkin (YYYY): ");
             tahunCheckin = sc.nextInt();
-            if (tahunCheckin == 2023) {
-            } else {
+
+            if (tahunCheckin != 2023) {
                 System.out.println("Tahun Checkin yang Anda Masukan Tidak Valid!\n");
             }
-        } while (tahunCheckin != 2023);
-        // output tahun checkin harus 2023
 
-        // input bulan checkin
+        }
+        // Bulan checkin
+
         do {
             System.out.print("Masukan Bulan Checkin(1-12): ");
             bulanCheckin = sc.nextInt();
@@ -593,7 +397,7 @@ public class AplikasiBookingRuangan {
                     namaBulanCheckin = "Desember";
                     break;
                 default:
-                    System.out.println("Bulan yang Anda Masukan Salah!");
+                    System.out.println("Bulan yang Anda Masukan Salah!\n");
                     break;
             }
         } while (bulanCheckin < 1 || bulanCheckin > 12);
@@ -634,156 +438,49 @@ public class AplikasiBookingRuangan {
             waktuCheckin -= 12;
         // output jam checkin
 
-        System.out.println("\nCheckin Sukses");
+        System.out.println("konfirmasi checkin");
 
-        System.out.println(
-                "Anda Memulai Checkin Pada " + " " + tanggalCheckin + " " + namaBulanCheckin + " "
-                        + tahunCheckin +
-                        " Pada Jam "
-                        + waktuCheckin + " " + ampmCheckin);
+        String konfirmCheckin;
+        boolean isConfirm = false;
 
-        // input layanan pelanggan
-        System.out.println("Jika ada Permasalahan Saat Checkin Silahkan Hubungi Nomer Berikut +" + resepsionis + "\n");
-        // output layanan pelanggan
+        while (!isConfirm) {
 
+            System.out.print("Apakah anda yakin ingin memulai checkin?(y/t): ");
+            konfirmCheckin = sc.next();
+
+            if (konfirmCheckin.equalsIgnoreCase("y")) {
+
+                System.out.println("\nSelamat checkin anda berhasil\n");
+                System.out.println(
+                        "Anda Memulai Checkin Pada " + " " + tanggalCheckin + " " + namaBulanCheckin + " "
+                                + tahunCheckin +
+                                " Pada Jam "
+                                + waktuCheckin + " " + ampmCheckin);
+                isConfirm = true;
+
+            } else if (konfirmCheckin.equalsIgnoreCase("t")) {
+                System.out.println("Anda batal checkin");
+
+                isConfirm = true;
+
+            } else {
+                System.out.println("Input yang anda masukan salah, silahkan coba kembali!");
+            }
+        }
         System.out.println("\n==================================================");
         System.out.println("=                  System out                    =");
         System.out.println("==================================================\n");
         // output checkin
 
-        System.out.println("\n==================================================");
-        System.out.println("=                Payment Methode                 =");
-        System.out.println("==================================================\n");
+    }
 
-        // array pilihan pembayaran
-        String[] paymentMethods = {
-                "M-Banking",
-                "Kartu Kredit/Debit",
-                "Offline Payment",
-                "Bank Transfer"
-        };
-
-        // array pilihan bank
-        String[] bankOptions = { "Bank CBA", "Bank ABC", "Bank ACB" };
-
-        // array pilihan kartu
-        String[] cardOptions = { "Kartu kredit", "Kartu debit" };
-
-        // input type data dan variable
-        String konfirmasiPembayaran;
-        int pilihanBank;
-        int pilihanKartu;
-        int payMethod;
-        String instruksiPembayaran = "";
-
-        // for panjang array yaitu 4
-        for (int i = 0; i < paymentMethods.length; i++) {
-            System.out.println((i + 1) + ". " + paymentMethods[i]);
-        }
-
-        // input user
-        System.out.print("Pilih Metode Pembayaran (1-" + paymentMethods.length + "): ");
-        payMethod = sc.nextInt();
-
-        // switch case pilihan pembayaran
-        switch (payMethod) {
-
-            // input 1 (m-banking)
-            case 1:
-                System.out.println("\n");
-                for (int i = 0; i < bankOptions.length; i++) {
-                    System.out.println((i + 1) + ". " + bankOptions[i]);
-                }
-                System.out.print("Pilih Bank:");
-                pilihanBank = sc.nextInt();
-                instruksiPembayaran = "Silahkan transfer m-banking " + bankOptions[pilihanBank - 1]
-                        + " pada nomor rekening 1234567890123456";
-                break;
-
-            // input 2 (kartu kredit/debit)
-            case 2:
-                System.out.println("\n");
-                for (int i = 0; i < cardOptions.length; i++) {
-                    System.out.println((i + 1) + ". " + cardOptions[i]);
-                }
-                System.out.print("Pilih Jenis Kartu:");
-                pilihanKartu = sc.nextInt();
-                instruksiPembayaran = "Silahkan lakukan pembayaran menggunakan " + cardOptions[pilihanKartu - 1]
-                        + " Anda";
-                break;
-
-            // input 3 (pembayaran offline)
-            case 3:
-                instruksiPembayaran = "Anda memilih pembayaran offline. Silahkan siapkan uang Anda saat melakukan checkin";
-                break;
-
-            // input 4 (bank transfer)
-            case 4:
-                System.out.println("\n");
-                for (int i = 0; i < bankOptions.length; i++) {
-                    System.out.println((i + 1) + ". " + bankOptions[i]);
-                }
-                System.out.print("Pilih Bank:");
-                pilihanBank = sc.nextInt();
-                instruksiPembayaran = "Silahkan transfer ke " + bankOptions[pilihanBank - 1]
-                        + " pada nomor rekening 1234567890123456";
-                break;
-
-            // input selain 1-4
-            default:
-                System.out.println("Pilihan pembayaran yang Anda masukan salah, silahkan coba lagi!");
-                return;
-        }
-
-        // loop konfirmasi pembayaran
-        Boolean isKonfirmasiPembayaran = false;
-        while (!isKonfirmasiPembayaran) {
-
-            // input user (y/t)
-            System.out.print("\nApakah Anda yakin dengan metode pembayaran ini? (y/t): ");
-            konfirmasiPembayaran = sc.next();
-
-            // ketika user memilih y
-            if (konfirmasiPembayaran.equalsIgnoreCase("y")) {
-                System.out.println(instruksiPembayaran);
-                isKonfirmasiPembayaran = true;
-            }
-
-            // ketika user memilih t
-            else if (konfirmasiPembayaran.equalsIgnoreCase("t")) {
-                System.out.println("\nPembayaran dibatalkan.");
-                isKonfirmasiPembayaran = true;
-            }
-
-            // ketika user memilih selain y/t
-            else {
-                System.out.println("Input yang anda masukan salah!");
-            }
-        }
-        System.out.println("\n==================================================");
-        System.out.println("=                  System out                    =");
-        System.out.println("==================================================\n");
-
-        // output payment methode
-
+    /*
+     * function checkout
+     */
+    static void checkout() {
         System.out.println("\n==================================================");
         System.out.println("=                   Checkout                     =");
         System.out.println("==================================================\n");
-
-        // input waktu checkout
-        int waktuCheckout;
-        String ampmCheckout;
-        do {
-            System.out.print("Masukan Waktu Checkout (format 24 jam): ");
-            waktuCheckout = sc.nextInt();
-            if (waktuCheckout < 0 || waktuCheckout >= 24) {
-                System.out.println("WaktuCheckout yang Anda Masukan Salah!\n");
-            }
-        } while (waktuCheckout < 0 || waktuCheckout >= 24);
-
-        ampmCheckout = waktuCheckout < 12 ? "AM" : "PM";
-        if (waktuCheckout > 12)
-            waktuCheckout -= 12;
 
         // konfirmasi checkout
         boolean konfirmasiCheckout = false;
@@ -797,70 +494,314 @@ public class AplikasiBookingRuangan {
                 System.out.println("Konfirmasi tidak sesuai! Silahkan coba lagi!\n");
             }
         }
+        // konfirmasi checkout
+
+        // input waktu checkout
+        int waktuCheckout;
+        String ampmCheckout;
+        do {
+            System.out.print("Masukan Waktu Checkout (format 24 jam): ");
+            waktuCheckout = sc.nextInt();
+            if (waktuCheckout < 0 || waktuCheckout >= 24) {
+                System.out.println("Waktu checkout yang Anda Masukan Salah!\n");
+            }
+        } while (waktuCheckout < 0 || waktuCheckout >= 24);
+
+        ampmCheckout = waktuCheckout < 12 ? "AM" : "PM";
+        if (waktuCheckout > 12)
+            waktuCheckout -= 12;
 
         System.out.println("Anda Telah Checkout Pada Jam " + waktuCheckout + " " + ampmCheckout);
+        // output waktu checkout
 
         System.out.println("\n==================================================");
         System.out.println("=                  System out                    =");
         System.out.println("==================================================\n");
+    }
 
-        // input penilaian dan feedback
-        int feedbackLimit = 1;
-        String[] arrayFeedback = new String[feedbackLimit];
-        int inputFeedback = 0;
+    /*
+     * function payment methode
+     */
+    static void payment() {
 
-        // input penilaian dan feedback
+        String konfirmasiPembayaran;
+        int pilihanBank = 0;
+        int pilihanKartu = 0;
+        int payMethod;
+
+        // pilihan pembayaran
+        do {
+            System.out.println("\n==================================================");
+            System.out.println("=                Payment Methode                 =");
+            System.out.println("==================================================\n");
+
+            System.out.println("1. M-Banking");
+            System.out.println("2. Kartu Kredit/Debit");
+            System.out.println("3. Offline Payment");
+            System.out.println("4. Bank Transfer");
+            System.out.print("Pilih Metode Pembayaran (1/2/3/4): ");
+            payMethod = sc.nextInt();
+
+            // pilihan pembayaran a
+            switch (payMethod) {
+                case 1:
+                    do {
+                        System.out.println("\n1. Bank CBA");
+                        System.out.println("2. Bank ABC");
+                        System.out.println("3. Bank ACB");
+                        System.out.println("0. batalkan pilihan");
+                        System.out.print("Silahkan pilih bank (1/2/3/0): ");
+                        pilihanBank = sc.nextInt();
+
+                        switch (pilihanBank) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 0:
+                                continue;
+                            default:
+                                System.out.println("Nomor yang anda masukan salah, silahkan pilih kembali!");
+                                break;
+                        }
+                    } while (pilihanBank != 0 && (pilihanBank < 1 || pilihanBank > 3));
+                    break;
+
+                // pilihan pembayaran b
+                case 2:
+                    do {
+                        System.out.println("\n1. Kartu kredit");
+                        System.out.println("2. Kartu debit");
+                        System.out.println("0. Batalkan pembayaran=");
+                        System.out.print("Silahkan pilih jenis kartu (1/2/0): ");
+                        pilihanKartu = sc.nextInt();
+
+                        switch (pilihanKartu) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 0:
+                                continue;
+                            default:
+                                System.out.println("Nomor yang anda masukan salah, silahkan coba lagi!");
+                        }
+                    } while (pilihanKartu != 0 && (pilihanKartu < 1 || pilihanKartu > 2));
+                    break;
+
+                // pilihan pembayaran c
+                case 3:
+                    break;
+
+                // pilihan pembayaran d
+                case 4:
+                    do {
+                        System.out.println("\n1. Bank CBA");
+                        System.out.println("2. Bank ABC");
+                        System.out.println("3. Bank ACB");
+                        System.out.println("0. batalkan pilihan");
+                        System.out.print("Silahkan pilih jenis bank (1/2/3/0): ");
+                        pilihanBank = sc.nextInt();
+
+                        switch (pilihanBank) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 0:
+                                continue;
+                            default:
+                                System.out.println("Nomor yang anda masukan salah, Silahkan coba lagi!");
+                        }
+                    } while (pilihanBank != 0 && (pilihanBank < 1 || pilihanBank > 3));
+                    break;
+                default:
+                    System.out.println("Pilihan pembayaran yang anda masukan salah, silahkan coba lagi!\n");
+                    continue;
+            }
+
+            // ketika user input c
+            if (payMethod == 3 || pilihanBank != 0 || pilihanKartu != 0) {
+                do {
+                    System.out.print("\nApakah anda sudah yakin dengan metode pembayaran ini? (y/t): ");
+                    konfirmasiPembayaran = sc.next();
+                    if (konfirmasiPembayaran.equalsIgnoreCase("t")) {
+                        System.out.println("Pembayaran dibatalkan, kembali ke pilihan pembayaran!\n");
+                        break;
+
+                        // ketika user input a/b/d
+                    } else if (konfirmasiPembayaran.equalsIgnoreCase("y")) {
+                        switch (payMethod) {
+                            case 1:
+                                switch (pilihanBank) {
+                                    case 1:
+                                        System.out.println(
+                                                "Silahkan transfer m-banking bank CBA pada nomor rekening 1234567890123456");
+                                        break;
+                                    case 2:
+                                        System.out.println(
+                                                "Silahkan transfer m-banking bank ABC pada nomor rekening 1234567890123456");
+                                        break;
+                                    case 3:
+                                        System.out.println(
+                                                "Silahkan transfer m-banking bank ACB pada nomor rekening 1234567890123456");
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                switch (pilihanKartu) {
+                                    case 1:
+                                        System.out.println(
+                                                "Silahkan transfer menggunakan kartu kredit pada rekening 1234567890123456");
+                                        break;
+                                    case 2:
+                                        System.out.println(
+                                                "Silahkan transfer menggunakan kartu debit pada rekening 1234567890123456");
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                switch (pilihanBank) {
+                                    case 1:
+                                        System.out.println(
+                                                "Silahkan transfer m-banking bank CBA pada nomor rekening 1234567890123456");
+                                        break;
+                                    case 2:
+                                        System.out.println(
+                                                "Silahkan transfer m-banking bank ABC pada nomor rekening 1234567890123456");
+                                        break;
+                                    case 3:
+                                        System.out.println(
+                                                "Silahkan transfer m-banking bank ACB pada nomor rekening 1234567890123456");
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                System.out.println("\nAnda telah mengkonfirmasi pembayaran.");
+                                System.out.println("Silahkan siapkan uang anda saat melakukan checkin");
+                                break;
+                        }
+                        System.out.println("\n==================================================");
+                        System.out.println("=                  System out                    =");
+                        System.out.println("==================================================\n");
+                        return;
+
+                        // ketika input salah
+                    } else {
+                        System.out.println("Pilihan yang anda masukan salah, silahkan pilih 'y' atau 't'!");
+                    }
+                } while (!konfirmasiPembayaran.equalsIgnoreCase("y") && !konfirmasiPembayaran.equalsIgnoreCase("t"));
+            }
+        } while (true);
+    }
+
+    /*
+     * function penilaian dan feedback
+     */
+    static void penilaian() {
+
         String feedback = "";
         String penilaian = "";
-        boolean validInput = false;
+        boolean isPenilaian = false;
 
         System.out.println("\n==================================================");
         System.out.println("=            Penilaian dan feedback              =");
         System.out.println("==================================================\n");
 
-        // input penilaian user
-        while (!validInput) {
-
-            System.out.println("Silahkan Beri Nilai Kepuasan Anda Terhadap Aplikasi Ini (1-5)");
+        // input ppenilaian 1-5
+        while (!isPenilaian) {
+            // input penilaian pelanggan
+            System.out.println("Bagaimana pengalaman anda saat menggunakan aplikasi  ini?");
             System.out.println("1 = Sangat Tidak Puas");
             System.out.println("2 = Tidak Puas");
             System.out.println("3 = Biasa Saja");
             System.out.println("4 = Puas");
             System.out.println("5 = Sangat Puas");
-            System.out.print("Masukan Penilaian Anda: ");
+            System.out.print("Silahkan isi penilaian sesuai kepuasan anda: ");
             penilaian = sc.next();
 
-            // penilaian harus bernilai 1-5
             if (penilaian.equals("1") || penilaian.equals("2") || penilaian.equals("3") || penilaian.equals("4")
                     || penilaian.equals("5")) {
-                validInput = true;
-                // penilaian selain 1-5
+                isPenilaian = true;
             } else {
-                System.out.println("Input yang Anda Masukan Salah! Harap masukkan angka antara 1-5.\n");
+                System.out.println("Anda memasukan angka yang salah, silahkan untuk memilih angka 1-5.\n");
             }
         }
 
-        // input feedback kepuasan pengguna
-        System.out.print("Silahkan berikan feedback Anda: ");
-        feedback = sc.next();
- 
-        if (inputFeedback < feedbackLimit) {
-
-            System.out.println("\nFeedback Anda Telah Tersimpan");
-            System.out.println("Terimakasih telah memberikan penilaian dan feedback pada aplikasi kami");
-            // feedback disimpan di array
-            arrayFeedback[inputFeedback] = feedback;
-            inputFeedback++;
-
-            // feedback telah lebih dimasukan satu kali
-        } else {
-            System.out.println("\nMaaf anda hanya dapat memasukan feedback 1 kali saja!");
-            System.out.println("Terimakasih telah memberikan penilaian pada aplikasi kami");
+        switch (penilaian) {
+            case "1":
+                System.out.println("Mohon maaf atas ketidaknyamanan yang telah anda alami pada aplikasi ini\n");
+                break;
+            case "2":
+                System.out.println("kami akan berusaha lebih baik lagi dalam pengembangan aplikasi ini\n");
+                break;
+            case "3":
+                System.out.println("Terimakasih atas penilaian anda\n");
+                break;
+            case "4":
+                System.out.println("Senang mendengar anda puas dengan aplikasi ini\n");
+                break;
+            case "5":
+                System.out.println("Senang mendengar anda sangat puas dengan aplikasi ini\n");
+                break;
         }
+        // output penilaian 1-5
+
+        // input feedback kepuasan pengguna
+        System.out.print("Kami ingin mendengar lebih lanjut, silahkan berikan feedback / saran anda: ");
+        feedback = sc.next();
+        // feedback telah disimpan
+
+        System.out.println("\nFeedback anda telah tersimpan");
+        System.out.println("Terima kasih telah meluangkan waktu untuk memberi masukan.");
 
         System.out.println("\n==================================================");
         System.out.println("=                  System out                    =");
         System.out.println("==================================================\n");
 
     }
+
+    static void keluar() {
+
+        System.out.println("\n==================================================");
+        System.out.println("=              Keluar dari aplikasi              =");
+        System.out.println("==================================================\n");
+
+        String konfirmKeluar;
+        Boolean isKonfirmKeluar = false;
+
+        while (!isKonfirmKeluar) {
+
+            System.out.print("Apakah anda yakin ingin keluar?(y/t): ");
+            konfirmKeluar = sc.next();
+
+            if (konfirmKeluar.equalsIgnoreCase("y")) {
+                System.out.println("\nTerimakasih telah menggunakan Aplikasi Booking Ruangan!");
+                System.out.println("\n==================================================");
+                System.out.println("=                   System end                   =");
+                System.out.println("==================================================\n");
+                isKonfirmKeluar = true;
+                menu = false;
+
+            } else if (konfirmKeluar.equalsIgnoreCase("t")) {
+                System.out.println("Anda kembali ke menu, silahkan pilih menu kembali!\n");
+                isKonfirmKeluar = true;
+                tampilkanMenu();
+
+            } else {
+                System.out.println("Input anda tidak valid, silahkan ulang kembali!\n");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        do {
+            tampilkanMenu();
+        } while (menu);
+    }
+
 }
